@@ -1,0 +1,14 @@
+<div class="container">
+	<h2 class="title-lg mb">Edit question <%= @question.id %></h2>
+
+	<%= form_with model: @question do |form| %>
+		<p><%= form.label :body, 'Question Text' %></p>
+		<p><%= form.text_area :body, rows: 5, class: 'form-text-area' %></p>
+		<p class="mt"><%= form.label :user_id %></p>
+		<p><%= form.text_field :user_id, class: 'form-text-field' %></p>
+		<div class='button-link'>
+			<p class="mt mr"><%= form.submit 'Save', class: 'button button-main' %></p>
+			<p class="mt mr">or <%= link_to 'back', :back %></p>
+		</div>
+	<% end %>	
+</div>

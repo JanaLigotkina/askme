@@ -1,0 +1,16 @@
+<div class="container">
+	<h2 class="title-lg mb">Question <%= @question.id %></h2>
+
+	<p class="mb-sm"><%= @question.body %></p>
+	<p>user_id: <b><%= @question.user_id %></b></p>
+
+	<div class="mt">
+		<% unless @question.hidden %>
+		  <%= button_to fa_icon('eye-slash'), hide_question_path(@question), method: :patch, title: 'Hide question' %>
+		<% end %>  
+		<%= link_to fa_icon('pencil'), edit_question_path(@question), title: 'Change question'%>
+		<%= button_to fa_icon('trash-o'), question_path(@question), method: :delete, title: 'Delete question', form: {data: {turbo_confirm: 'You want to delete question. Are you sure?'}} %>
+	</div>
+
+	<p class="mt"><%= link_to "All questions", questions_path %></p>
+</div>

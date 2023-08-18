@@ -1,0 +1,7 @@
+.question_is_hidden {
+	opacity: 0.5;
+}
+
+.question_is_visible {
+	opacity: 1;
+}
