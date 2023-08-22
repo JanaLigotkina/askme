@@ -1,19 +1,5 @@
 <div class="container">
 	<h2 class="title-lg mb">New Question</h2>
 
-	<!-- <form action="/questions" method="POST">
-		<p><label for="question[body]">Question Text</label></p>
-		<p><textarea name="question[body]" rows=5></textarea></p>
-		<p><label for="question[user_id]">User ID</label></p>
-		<p><input type="number" name="question[user_id]"></p>
-		<p><input type="submit" value="Create"></p>
-	</form> -->
-
-	<%= form_with model: @question do |form| %>
-		<p><%= form.label :body, 'Question Text' %></p>
-		<p><%= form.text_area :body, rows: 5, class: 'form-text-area' %></p>
-		<p class="mt"><%= form.label :user_id %></p>
-		<p><%= form.text_field :user_id, class: 'form-text-field' %></p>
-		<p class="mt"><%= form.submit 'Create', class: 'button button-main' %></p>
-	<% end %>
+	<%= render 'form', question: @question %>
 </div>

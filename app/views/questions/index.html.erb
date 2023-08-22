@@ -1,14 +1,24 @@
 <div class="container">
-	<h2 class="title-lg mb">Questions</h2>
-
-	<% @questions.each do |question| %>
-	  <% class_question_hidden = question.hidden ? "question_is_hidden" : "question_is_visible" %>
-	  <%= content_tag :p, class: ["mb-sm", class_question_hidden] do %>
-	    <%= link_to "Question #{question.id}", question_path(question.id) %>
-	  <% end %>  
-	<% end %>  
-
 	<p class="mt">
 		<%= link_to "Create new question", new_question_path, class: 'button button-main' %>
 	</p>
+
+	<p class="mt">
+		<%= render 'form', question: @question %>
+	</p>
 </div>
+
+<div class="container">
+	<h2 class="title-lg">
+		Total <%= @questions.count %>
+		<%= inclinator(@questions.count, 'question', 'questions') %>
+	</h2>
+</div>
+
+<% @questions.each do |question| %>
+	<% class_question_hidden = question.hidden ? "question_is_hidden" : "question_is_visible" %>
+
+	<%= content_tag :div, class: ["mt-sm", "container", class_question_hidden] do %>
+	<%= render question %>
+	<% end %>  
+<% end %>
