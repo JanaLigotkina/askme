@@ -18,3 +18,8 @@
 	align-content: flex-start;
 	align-items: center;
 }
+
+.button-yellow {
+	background: #ffba08;
+  color: #000;
+}
