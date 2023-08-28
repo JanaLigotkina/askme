@@ -3,16 +3,32 @@ class QuestionsController < ApplicationController
 	before_action :set_question, only: %i[update show destroy edit hide]
 
 	def create
-		question = Question.create(question_params)
+		@question = Question.new(question_params)
 
-		redirect_to question_path(question), notice: 'New question has been created!'
+	    if @question.save
+				redirect_to question_path(@question), notice: 'New question has been created!'
+	    else 
+	      flash.now[:alert] = 'Question length must be less than 280 characters'
+
+	      render :new
+	    end   
 	end 
 
 	def update
-	  @question.update(question_params)
+		#   @question.update(question_params)
 
-	  redirect_to question_path(@question), notice: 'The question has been changed!'
-	end  
+		#   redirect_to question_path(@question), notice: 'The question has been changed!'
+		# end 
+		@question = Question.find(params[:id]) 
+
+		if @question.update(question_params)
+      redirect_to question_path(@question), notice: 'The question has been changed!'
+    else
+      flash.now[:alert] = 'Invalid question field'
+
+      render :edit 
+    end 
+  end
 
 	def destroy
 		@question.destroy
