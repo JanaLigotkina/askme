@@ -11,18 +11,21 @@
 
 	<div class="mt">
 		<%= form_with model: @user, data: {turbo: false} do |form| %>
-		  <p><%= form.label :name, 'Name' %></p>
+		  <p class="mb-sm"><%= form.label :name, 'Name' %></p>
 		  <p><%= form.text_field :name, class: 'form-text-field' %></p>
 
-		  <p class="mt"><%= form.label :nickname, 'Nickname' %></p>
+		  <p class="mt mb-sm"><%= form.label :nickname, 'Nickname' %></p>
 		  <p><%= form.text_field :nickname, class: 'form-text-field' %></p>
+
+		  <p class="mt mb-sm"><%= form.label :header_color, 'Site header color' %></p>
+		  <p><%= form.color_field :header_color, class: 'form-text-field' %></p>
 
 		  <p class="mt-lg text-sm">If you don't want to change your password, leave these fields blank!</p>
 
-		  <p class="mt"><%= form.label :password, 'Password' %></p>
+		  <p class="mt mb-sm"><%= form.label :password, 'Password' %></p>
 		  <p><%= form.password_field :password, class: 'form-text-field' %></p>
 
-		  <p class="mt"><%= form.label :password_confirmation, 'Confirm password' %></p>
+		  <p class="mt mb-sm"><%= form.label :password_confirmation, 'Confirm password' %></p>
 		  <p><%= form.password_field :password_confirmation, class: 'form-text-field' %></p>
 
 		  <p class="mt-lg">
