@@ -7,9 +7,15 @@
 <% end %>
 
 <%= form_with model: question, data: {turbo: false} do |form| %>
+	<%= form.hidden_field :user_id %>
+
 	<p><%= form.label :body, 'Question Text' %></p>
 	<p><%= form.text_area :body, rows: 5, class: 'form-text-area' %></p>
-	<p class="mt"><%= form.label :user_id %></p>
-	<p><%= form.text_field :user_id, class: 'form-text-field' %></p>
+
+	<% if question.persisted? %>
+		<p class="mt"><%= form.label :answer, 'Answer' %></p>
+		<p><%= form.text_area :answer, rows: 5, class: 'form-text-area' %></p>
+	<% end %>
+
 	<p class="mt"><%= form.submit 'Create', class: 'button button-main' %></p>
 <% end %>
