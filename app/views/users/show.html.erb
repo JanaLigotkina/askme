@@ -9,25 +9,29 @@
 	<p class="text-bold mt mb-lg"><%= @user.nickname %></p>
 </div>
 
-<div class="container">
-	<%= link_to 'Ask me', new_question_path(user_id: @user.id),
-  class: 'button button-yellow' %>
-	<p class="mt">
-		<%= render 'questions/form', question: @question %>
-	</p>
-</div>
+<% if @questions.count == 0 %>
+	<%= render 'questions/empty' %>
+<% else %>	
+	<div class="container">
+		<%= link_to 'Ask me', new_question_path(user_id: @user.id),
+	  class: 'button button-yellow' %>
+		<p class="mt">
+			<%= render 'questions/form', question: @question %>
+		</p>
+	</div>
 
-<div class="container">
-	<h2 class="title-lg">
-		Total <%= @questions.count %>
-		<%= inclinator(@questions.count, 'question', 'questions') %>
-	</h2>
-</div>
+	<div class="container">
+		<h2 class="title-lg">
+			Total <%= @questions.count %>
+			<%= inclinator(@questions.count, 'question', 'questions') %>
+		</h2>
+	</div>
 
-<% @questions.each do |question| %>
-	<% class_question_hidden = question.hidden ? "question_is_hidden" : "question_is_visible" %>
+	<% @questions.each do |question| %>
+		<% class_question_hidden = question.hidden ? "question_is_hidden" : "question_is_visible" %>
 
-	<%= content_tag :div, class: ["mt-sm", "container", class_question_hidden] do %>
-	<%= render question %>
-	<% end %>  
-<% end %>
+		<%= content_tag :div, class: ["mt-sm", "container", class_question_hidden] do %>
+		<%= render question %>
+		<% end %>  
+	<% end %>
+<% end %>	

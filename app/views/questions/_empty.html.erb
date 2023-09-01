@@ -1,0 +1,8 @@
+<div class="container">
+	<div class="container-image">
+		<p class="mb">Oh, there are no questions here yet :( </p>
+  	<%= image_tag 'empty.png', class: 'image-class', alt: 'Cat' %>
+  	<%= link_to 'Start with a Question', new_question_path(user_id: @user.id),
+  class: 'mt-lg button button-yellow' %>
+	</div>
+</div>
