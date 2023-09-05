@@ -1,18 +1,19 @@
 class User < ApplicationRecord
 	has_secure_password
 
+	has_many :questions, dependent: :delete_all
+	has_many :authored_questions, class_name: 'Question', foreign_key: 'author_id', dependent: :nullify
+
 	before_save :downcase_nickname, :downcase_email
 
 	validates :email, presence: true, uniqueness: true, format: { with: /\A[\w\d]+@[\w\d]+\.[\w]+\z/ }
 	validates :nickname, uniqueness: true, length: {maximum: 40}, format: { with: /\A[a-z_]+\z/ } 
 	validates :header_color, format: { with: /\A#[a-f0-9]{6}\z/i }
 
-	has_many :questions, dependent: :delete_all
-
 	private 
 
 	def downcase_nickname
-		nickname.downcase!
+		nickname&.downcase!
 	end 	
 
 	def downcase_email

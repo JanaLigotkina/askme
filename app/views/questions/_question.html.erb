@@ -10,8 +10,13 @@
 
 <div class="text-sm question-footer">
   <div class="text-grey">
+    <% if question.author %>
+      <p>This question is asked by <%= link_to question.author.nickname, user_path(question.author)%></p>
+    <% else %>
+      <p class="text-underline">The author did not introduce himself</p>
+    <% end %> 
     <%= l(question.created_at, format: :short) %>
-  </div>
+  </div> 
 
   <% if current_user == question.user %>
     <div>
