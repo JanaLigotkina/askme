@@ -14,7 +14,8 @@
       <p>This question is asked by <%= link_to question.author.nickname, user_path(question.author)%></p>
     <% else %>
       <p class="text-underline">The author did not introduce himself</p>
-    <% end %> 
+    <% end %>
+
     <%= l(question.created_at, format: :short) %>
   </div> 
 
