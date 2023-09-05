@@ -1,6 +1,12 @@
 <div class="container">
 	<h2 class="title">Edit user</h2>
 
+	<div class="mt">
+  	<p class="mb"><%= image_tag @user.gravatar_url, title: "@#{@user.nickname}", class: 'rounded' %></p>
+  	<p class="text-sm">Register on the site <%= link_to "Gravatar", 'https://gravatar.com' %> and upload a photo to add or change an avatar</p>
+	</div>
+
+
 	<% if @user.errors.any? %>
   	<div class="mt">
     	<% @user.errors.full_messages.each do |message| %>
